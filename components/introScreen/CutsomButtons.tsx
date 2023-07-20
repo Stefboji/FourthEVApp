@@ -1,20 +1,20 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
-  Image,
-  Button,
   Alert,
   Pressable,
-  Dimensions,
 } from "react-native";
 
-const CustomButtons = () => (
+interface CustomButtonsProps {
+  onRegisterClick: () => void
+}
+
+const CustomButtons = ({ onRegisterClick }: CustomButtonsProps) => (
     <View>
       <Pressable
         style={styles.regButton}
-        onPress={() => Alert.alert("Going to register")}
+        onPress={onRegisterClick}
       >
         <Text style={styles.regButtonText}>Get started</Text>
       </Pressable>
