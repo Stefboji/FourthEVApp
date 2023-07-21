@@ -1,23 +1,27 @@
 import { StyleSheet, Text, View, Alert, Pressable } from "react-native";
+import CustomButton from "../utils/CustomButton";
 
 
-const CustomButtons = () => {
-  const onGetStatrtedClick = () => {
-      console.log('Get Started Click');
-  };
+interface CutsomButtonsProps {
+  onGetStartedClicked: ()=> void,
+  onLoginClicked: () => void,
+}
+const CustomButtons = ({ onGetStartedClicked, onLoginClicked}: CutsomButtonsProps) => {
+  
   return (
     <View>
-      <Pressable 
-        style={styles.regButton} 
-        onPress={onGetStatrtedClick}>
-        <Text style={styles.regButtonText}>Get started</Text>
-      </Pressable>
-      <Pressable
-        style={styles.logButton}
-        onPress={() => Alert.alert("Going to Login")}
-      >
-        <Text style={styles.logButtonText}>Login</Text>
-      </Pressable>
+      <CustomButton
+        text='Get Started'
+        onPress={onGetStartedClicked}
+        buttonStyle={styles.regButton}
+        textStyle={styles.regButtonText}
+      />
+     <CustomButton
+      text='Login'
+      onPress={onLoginClicked}
+      buttonStyle={styles.logButton}
+      textStyle={styles.logButtonText}
+      />
     </View>
   );
 };

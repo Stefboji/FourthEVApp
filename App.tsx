@@ -13,7 +13,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="IntroScreen" component={IntroScreen} />
-          <Stack.Screen name="RegisterScreen" component={Register} />
+          {/* <Stack.Screen name="RegisterScreen" component={Register} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>
