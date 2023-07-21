@@ -1,13 +1,7 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
-  Image,
-  Button,
-  Alert,
-  Pressable,
-  Dimensions,
 } from "react-native";
 
 const FirstText = () => {
@@ -31,6 +25,7 @@ const FirstText = () => {
         marginTop: 39,
         marginHorizontal: 16,
         marginBottom: 12,
+
       },
       bodyText:{
        width: 361,
