@@ -17,18 +17,32 @@ const IntroScreen = ({ navigation }: IntroScreenProps) => {
   const handleGetStartedClicked = () => {
     setIsRegisterOpen(true);
   };
-  const handleLoginClicked = ( ) => {
+  const handleLoginClicked = () => {
     setIsLoginOpen(true);
-  }
+  };
 
+  const handleAuth = (payload: {}) => {
+    setIsLoginOpen(false);
+    setIsRegisterOpen(false);
+    navigation.navigate("HomeScreen");
+  };
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <Photo />
       <FirstText />
-      <CustomButtons onGetStartedClicked={handleGetStartedClicked} onLoginClicked={handleLoginClicked}/>
-      { isRegisterOpen && <Register onRegisterClose={() => setIsRegisterOpen(false)}/>}
-      { isLoginOpen && <Login onLoginClose={() => setIsLoginOpen(false)}/>}
+      <CustomButtons
+        onGetStartedClicked={handleGetStartedClicked}
+        onLoginClicked={handleLoginClicked}
+      />
+      {isRegisterOpen && (
+        <Register
+          onRegisterClose={() => setIsRegisterOpen(false)}
+          onRegisterSubmit={handleAuth}
+        />
+      )}
+      {isLoginOpen && <Login onLoginClose={() => setIsLoginOpen(false)}
+      onLoginSubmit={handleAuth} />}
     </View>
   );
 };

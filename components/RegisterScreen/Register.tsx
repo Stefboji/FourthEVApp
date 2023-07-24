@@ -8,9 +8,10 @@ import CustomButton from "../utils/CustomButton";
 
 interface RegisterProps {
   onRegisterClose: () => void;
+  onRegisterSubmit: (payload: any) => void;
 }
 
-const Register = ({ onRegisterClose }: RegisterProps) => {
+const Register = ({ onRegisterClose, onRegisterSubmit }: RegisterProps) => {
     const[username, setUsername] =useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -52,7 +53,7 @@ const Register = ({ onRegisterClose }: RegisterProps) => {
       
       <CustomButton
         text='Register'
-        onPress={() => Alert.alert('GG New account')}
+        onPress={() => onRegisterSubmit({})}
         buttonStyle={styles.button}
         textStyle={styles.text}/>
         </BottomSheetView>

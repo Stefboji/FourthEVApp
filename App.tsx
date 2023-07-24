@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import IntroScreen from "./components/IntroScreen/IntroScreen";
 import Register from "./components/RegisterScreen/Register";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import HomeScreen from "./components/HomeScreen/HomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +14,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="IntroScreen" component={IntroScreen} />
-          {/* <Stack.Screen name="RegisterScreen" component={Register} /> */}
+          { <Stack.Screen name="HomeScreen" component={HomeScreen} /> }
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>

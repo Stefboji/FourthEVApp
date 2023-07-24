@@ -8,9 +8,10 @@ import CustomButton from "../utils/CustomButton";
 
 interface LoginProps {
   onLoginClose: () => void;
+  onLoginSubmit: (payload: {}) => void;
 }
 
-const Login = ({ onLoginClose }: LoginProps) => {
+const Login = ({ onLoginClose, onLoginSubmit }: LoginProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,7 +25,7 @@ const Login = ({ onLoginClose }: LoginProps) => {
       onClose={onLoginClose}
     >
       <BottomSheetView style={styles.contentContainer}>
-        <Text style={styles.headerText}>Register</Text>
+        <Text style={styles.headerText}>Login</Text>
 
         <BottomSheetTextInput
           style={styles.input}
@@ -44,7 +45,7 @@ const Login = ({ onLoginClose }: LoginProps) => {
 
         <CustomButton
           text="Login"
-          onPress={() => Alert.alert("You are loged in")}
+          onPress={() => onLoginSubmit({})}
           buttonStyle={styles.button}
           textStyle={styles.text}
         />
