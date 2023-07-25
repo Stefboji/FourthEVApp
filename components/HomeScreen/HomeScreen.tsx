@@ -68,7 +68,9 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       setIndex(viewableItems[0].index || 0);
     }
   ).current;
-
+    const viewabilityConfig = useRef({
+        itemVisiblePercentThreshold: 50,
+    }).current
   return (
     <SafeAreaView>
       <Text> Showing all cars</Text>
@@ -86,13 +88,22 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         showsHorizontalScrollIndicator={false}
         onScroll={handleOnScroll}
         onViewableItemsChanged={handleOnViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
+        style={styles.container}
       />
     </SafeAreaView>
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        borderColor: "black",
+        borderWidth: 2,
+        height: 157,
+        width: "100%",
+        paddingHorizontal: 16,
+        
+    }
+});
 
 export default HomeScreen;
-function setIndex(index: any) {
-  throw new Error("Function not implemented.");
-}
+
