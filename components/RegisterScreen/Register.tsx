@@ -53,7 +53,11 @@ const Register = ({ onRegisterClose, onRegisterSubmit }: RegisterProps) => {
       
       <CustomButton
         text='Register'
-        onPress={() => onRegisterSubmit({})}
+        onPress={() => onRegisterSubmit({
+            username: username,
+            email: email,
+            password: password,
+        })}
         buttonStyle={styles.button}
         textStyle={styles.text}/>
         </BottomSheetView>

@@ -21,9 +21,32 @@ const IntroScreen = ({ navigation }: IntroScreenProps) => {
     setIsLoginOpen(true);
   };
 
+  function submitRegister(data: {}) {
+    console.log(data);
+    fetch("http://192.168.115.101:5000/api/Users/Register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application-json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {console.log("here maybe")
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }console.log("here")
+        // Process the response data here
+        return response.json();
+      })
+      .then((data) => console.log("Ready: ", data))
+      .catch((error: any) => {console.log(error)
+        console.log(error.message);
+      });
+  }
+
   const handleAuth = (payload: {}) => {
     setIsLoginOpen(false);
     setIsRegisterOpen(false);
+    //submitRegister(payload);
     navigation.navigate("HomeScreen");
   };
   return (
@@ -41,8 +64,12 @@ const IntroScreen = ({ navigation }: IntroScreenProps) => {
           onRegisterSubmit={handleAuth}
         />
       )}
-      {isLoginOpen && <Login onLoginClose={() => setIsLoginOpen(false)}
-      onLoginSubmit={handleAuth} />}
+      {isLoginOpen && (
+        <Login
+          onLoginClose={() => setIsLoginOpen(false)}
+          onLoginSubmit={handleAuth}
+        />
+      )}
     </View>
   );
 };
