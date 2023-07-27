@@ -2,18 +2,17 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { responsiveHeight, responsiveWidth } from "../../utils/dimensionHelper";
 
 interface CarSliderItemProps {
-  id: number;
   name: string;
   imagePath: string;
   price: number;
-  handleCarSelect: (id: number) => void;
+  handleCarSelect: () => void;
 }
 
-const CarSliderItem = ({ id, name, imagePath, price, handleCarSelect }: CarSliderItemProps) => {
+const CarSliderItem = ({ name, imagePath, price, handleCarSelect }: CarSliderItemProps) => {
     console.log(imagePath)
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1}
-     onPress={() => handleCarSelect(id)}
+     onPress={handleCarSelect}
     >
         <View style={styles.carTextContainer}>
       <Text style={styles.carHeaderText}>{name}</Text>

@@ -21,9 +21,10 @@ interface CategoryProps {
     price: number;
     imagePath: string;
   }[];
+  handleCarSelect: (id: number) => void;
 }
 
-const Category = ({ name, data }: CategoryProps) => {
+const Category = ({ name, data, handleCarSelect }: CategoryProps) => {
   const scrollX = useRef(new Animated.Value(0)).current;
 
   const handleOnScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -54,6 +55,7 @@ const Category = ({ name, data }: CategoryProps) => {
     itemVisiblePercentThreshold: 50,
   }).current;
   
+
   return (
     <View style={styles.categoryContainer}>
       <Text style={styles.titleText}>{name}</Text>
@@ -62,11 +64,10 @@ const Category = ({ name, data }: CategoryProps) => {
         renderItem={({ item }) => (
           <CarSliderItem
             key={item.id}
-            id={item.id}
             name={item.name}
             price={item.price}
             imagePath={item.imagePath}
-            handleCarSelect={() =>{} }
+            handleCarSelect={() => handleCarSelect(item.id)}
           />
         )}
         horizontal

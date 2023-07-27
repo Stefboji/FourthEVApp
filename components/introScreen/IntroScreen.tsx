@@ -23,7 +23,7 @@ const IntroScreen = ({ navigation }: IntroScreenProps) => {
 
   function submitRegister(data: {}) {
     console.log(data);
-    fetch("http://192.168.114.101:5000/api/Users/Register", {
+    fetch("http://192.168.115.101:5000/api/Users/Register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
