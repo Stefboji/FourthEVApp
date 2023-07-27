@@ -23,17 +23,15 @@ const IntroScreen = ({ navigation }: IntroScreenProps) => {
 
   function submitRegister(data: {}) {
     console.log(data);
-    fetch("http://192.168.115.101:5000/api/Users/Register", {
+    fetch("http://192.168.114.101:5000/api/Users/Register", {
       method: "POST",
       headers: {
-        "Content-Type": "application-json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
       .then((response) => {console.log("here maybe")
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }console.log("here")
+      console.log(response)
         // Process the response data here
         return response.json();
       })
@@ -46,7 +44,7 @@ const IntroScreen = ({ navigation }: IntroScreenProps) => {
   const handleAuth = (payload: {}) => {
     setIsLoginOpen(false);
     setIsRegisterOpen(false);
-    //submitRegister(payload);
+    submitRegister(payload);
     navigation.navigate("HomeScreen");
   };
   return (

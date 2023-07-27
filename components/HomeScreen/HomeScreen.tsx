@@ -15,25 +15,29 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     {
       id: 1,
       name: "BMWi8",
+      price: 47,
       imagePath: require("../../assets/BMWi8.png"),
     },
 
     {
       id: 2,
-      name: "Object 2",
-      imagePath: require("../../assets/BMWi8.png"),
+      name: "BWMI4",
+      price: 90,
+      imagePath: require("../../assets/BMWi4.png"),
     },
 
     {
       id: 3,
-      name: "Object 3",
-      imagePath: require("../../assets/BMWi8.png"),
+      name: "BMWiX",
+      price: 80,
+      imagePath: require("../../assets/BMWiX.png"),
     },
 
     {
       id: 4,
-      name: "Object 4",
-      imagePath: require("../../assets/BMWi8.png"),
+      name: "IPace",
+      price: 70,
+      imagePath: require("../../assets/IPace.png"),
     },
   ];
 

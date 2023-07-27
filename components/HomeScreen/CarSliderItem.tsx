@@ -1,32 +1,37 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { responsiveHeight, responsiveWidth } from "../../utils/dimensionHelper";
 
 interface CarSliderItemProps {
+  id: number;
   name: string;
   imagePath: string;
+  price: number;
+  handleCarSelect: (id: number) => void;
 }
 
-const CarSliderItem = ({ name, imagePath }: CarSliderItemProps) => {
+const CarSliderItem = ({ id, name, imagePath, price, handleCarSelect }: CarSliderItemProps) => {
     console.log(imagePath)
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} activeOpacity={1}
+     onPress={() => handleCarSelect(id)}
+    >
         <View style={styles.carTextContainer}>
       <Text style={styles.carHeaderText}>{name}</Text>
-      <Text style={styles.carSubText}>{name}</Text></View>
+      <Text style={styles.carSubText}>from BGN {price}</Text></View>
       <Image 
         source={imagePath}
         style={styles.image}
       />
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        width: 173,
+        width: responsiveWidth(190),
         marginRight: 14,
-        height: 200,
+        height: responsiveHeight(130),
     },
     image: {
         width: responsiveWidth(173),
@@ -38,7 +43,7 @@ const styles = StyleSheet.create({
         width: responsiveWidth(105),
         borderWidth: 2,
         borderColor: 'yellow',
-        height: responsiveHeight(75),
+        height: responsiveHeight(100),
         alignItems: 'center',
         backgroundColor: "#189CFF",
         borderRadius: 10,
@@ -47,7 +52,7 @@ const styles = StyleSheet.create({
     carHeaderText: {
         fontSize: 18,
         fontWeight: "700",
-        color: 'whiute',
+        color: 'white',
     },
     carSubText: {
         fontSize: 14,

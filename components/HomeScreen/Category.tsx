@@ -18,6 +18,7 @@ interface CategoryProps {
   data: {
     id: number;
     name: string;
+    price: number;
     imagePath: string;
   }[];
 }
@@ -61,8 +62,11 @@ const Category = ({ name, data }: CategoryProps) => {
         renderItem={({ item }) => (
           <CarSliderItem
             key={item.id}
+            id={item.id}
             name={item.name}
+            price={item.price}
             imagePath={item.imagePath}
+            handleCarSelect={() =>{} }
           />
         )}
         horizontal
