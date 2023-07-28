@@ -1,10 +1,11 @@
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, View } from "react-native";
 import React, { useRef } from "react";
 import { Car } from "../../interfaces/Car";
 import { responsiveHeight, responsiveWidth } from "../../utils/dimensionHelper";
 import CarTechDetails from "../utils/CarTechDetails";
 import BookingCalendar from "./BookingCalendar";
+import CustomButton from "../utils/CustomButton";
 
 interface CarDetailsSheetProps {
   data: Car;
@@ -16,7 +17,7 @@ const CarDetailsSheet = ({ data, onClose }: CarDetailsSheetProps) => {
   return (
     <BottomSheet
       ref={bottomSheetRef}
-      snapPoints={["80%"]}
+      snapPoints={["85%"]}
       enablePanDownToClose
       onClose={onClose}
     >
@@ -24,12 +25,23 @@ const CarDetailsSheet = ({ data, onClose }: CarDetailsSheetProps) => {
         <Text style={styles.headerText}>{data.name}</Text>
         <Image source={data.imagePath} style={styles.image} />
         <View style={styles.detailsContainer}>
-          <CarTechDetails title="225km" desc="Range" />
-          <CarTechDetails title="245km/h" desc="Top speed" />
-          <CarTechDetails title="30min" desc="Charge time" />
+          <CarTechDetails title={`${data.range}km`} desc="Range" />
+          <CarTechDetails title={`${data.topSpeed}km/h`} desc="Top speed" />
+          <CarTechDetails title={`${data.chargeTime}min`} desc="Charge time" />
         </View>
         <View style={styles.calendarContainer}>
           <BookingCalendar />
+        </View>
+        <View style ={styles.buttonsContainer}>
+            <CustomButton buttonStyle ={styles.cancelButton}
+            text="Cancel"
+            textStyle={styles.buttonText}
+            onPress={onClose}/>
+            <CustomButton
+            buttonStyle={styles.submitButton}
+            text="Reserve"
+            textStyle={styles.buttonText}
+            onPress={() => Alert.alert("Reservation has been made")}/>
         </View>
       </BottomSheetView>
     </BottomSheet>
@@ -57,7 +69,33 @@ const styles = StyleSheet.create({
   },
   calendarContainer: {
     height: responsiveHeight(380),
-    width: "100%",
+  },
+  buttonsContainer: {
+    flex: 1,
+    flexDirection:"row",
+    justifyContent: 'space-around'
+  },
+  buttonText: {
+    color: "black",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  submitButton: {
+    width: responsiveWidth(180),
+    backgroundColor: "#F0EDFF",
+    height: 48,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  cancelButton: {
+    color: "white",
+    width: responsiveWidth(180),
+    height: 48,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 16,
+
   },
 });
 

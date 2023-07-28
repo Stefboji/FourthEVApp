@@ -55,8 +55,6 @@ const Pagination = ({ data, scrollX, index }: PaginationProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
-    bottom: 35,
     flexDirection: "row",
     width: "100%",
     alignItems: "center",
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
   dot: {
     width: responsiveWidth(8),
     height: responsiveHeight(8),
-    borderRadius: responsiveWidth(4),
+    borderRadius: responsiveWidth(6),
     marginHorizontal: responsiveWidth(3),
     backgroundColor: "#ccc",
   },

@@ -9,7 +9,6 @@ interface CarSliderItemProps {
 }
 
 const CarSliderItem = ({ name, imagePath, price, handleCarSelect }: CarSliderItemProps) => {
-    console.log(imagePath)
   return (
     <TouchableOpacity style={styles.container} activeOpacity={1}
      onPress={handleCarSelect}
@@ -29,8 +28,9 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         width: responsiveWidth(190),
-        marginRight: 14,
+        paddingHorizontal: responsiveWidth(16),
         height: responsiveHeight(130),
+        alignItems: 'center'
     },
     image: {
         width: responsiveWidth(173),
@@ -40,11 +40,9 @@ const styles = StyleSheet.create({
     },
     carTextContainer:{
         width: responsiveWidth(105),
-        borderWidth: 2,
-        borderColor: 'yellow',
         height: responsiveHeight(100),
         alignItems: 'center',
-        backgroundColor: "#189CFF",
+        backgroundColor: "#E372FF",
         borderRadius: 10,
         padding: 6,
     },

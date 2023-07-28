@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import CustomButtons from "./CustomButtons";
 import FirstText from "./FirstText";
 import Photo from "./Photo";
@@ -14,6 +14,8 @@ interface IntroScreenProps {
 const IntroScreen = ({ navigation }: IntroScreenProps) => {
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+  const [userId, setUserId] = useState(0);
   const handleGetStartedClicked = () => {
     setIsRegisterOpen(true);
   };
@@ -23,22 +25,26 @@ const IntroScreen = ({ navigation }: IntroScreenProps) => {
 
   function submitRegister(data: {}) {
     console.log(data);
-    fetch("http://192.168.115.101:5000/api/Users/Register", {
+    fetch("http://172.20.10.8:5000/api/Users/Register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     })
-      .then((response) => {console.log("here maybe")
-      console.log(response)
-        // Process the response data here
-        return response.json();
+      .then((response) => response.json())
+      .then((data) => {
+        setUserId(data);
+        setIsAuth(true);
       })
-      .then((data) => console.log("Ready: ", data))
       .catch((error: any) => {console.log(error)
         console.log(error.message);
       });
+  }
+
+  const alertAuth = () => {
+    Alert.alert(`User is authenticated! User ID: ${userId}`);
+    return <></>;
   }
 
   const handleAuth = (payload: {}) => {
@@ -68,6 +74,7 @@ const IntroScreen = ({ navigation }: IntroScreenProps) => {
           onLoginSubmit={handleAuth}
         />
       )}
+      {isAuth && alertAuth()}
     </View>
   );
 };

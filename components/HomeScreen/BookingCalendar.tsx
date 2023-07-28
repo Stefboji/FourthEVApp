@@ -1,6 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { StyleSheet } from "react-native";
 import { CalendarList, DateData } from "react-native-calendars";
+import { responsiveWidth } from "../../utils/dimensionHelper";
 
 const BookingCalendar = () => {
   const [startDate, setStartDate] = useState<string>("");
@@ -21,13 +22,23 @@ const BookingCalendar = () => {
         selectedColor: "#5E60CE",
         selectedTextColor: "white",
       },
+      ...dateBetween.reduce((acc, date) => (
+        {
+            ...acc,
+            [date]: {
+                selected:date !== '',
+                disableTouchEvent: true,
+                selectedColor: '#5E60CE',
+                selectedTextColor: 'white',
+            }
+        }
+      ), {})
       
     };
-  }, [startDate, endDate]);
+  }, [startDate, endDate, dateBetween]);
 
   const onDayPress = useCallback(
     (day: DateData) => {
-      console.log(day);
       if (startDate === "") {
         setStartDate(day.dateString);
       } else {
@@ -57,7 +68,7 @@ const BookingCalendar = () => {
       onDayPress={onDayPress}
       markedDates={marked}
       minDate={new Date().toString()}
-      calendarWidth={390}
+      calendarWidth={responsiveWidth(390)}
     />
   );
 };

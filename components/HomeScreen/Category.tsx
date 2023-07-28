@@ -84,8 +84,6 @@ const Category = ({ name, data, handleCarSelect }: CategoryProps) => {
 
 const styles = StyleSheet.create({
   categoryContainer: {
-    borderColor: "black",
-    borderWidth: 2,
     height: 157,
     width: "100%",
     paddingHorizontal: responsiveWidth(16),
